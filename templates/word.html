@@ -1,0 +1,37 @@
+
+{% extends 'base.html' %}
+
+{% block content%}
+<style>
+    h3{
+        font-size: medium;
+        font-style:inherit;
+        color: darkolivegreen;
+    }
+</style>
+<div>
+    <form action='word'>
+        <p> 
+            <input type="text" name="search" placeholder="Input your word here">
+        </p>
+        <p>
+            <input type="submit" value="search">
+        </p>
+</div>
+<div>
+<h3>Meaning: {{meaning}}</h3>
+   
+   <h3>Synonyms: {% for synonym in synonyms %}
+       {{synonym}},
+       {% endfor %}</h3>
+   
+   
+   <h3>Antonyms: {% for antonym in antonyms %}
+       {{antonym}},
+       {% endfor %}</h3>
+   
+</div>
+</body>
+</html>
+
+{% endblock %}

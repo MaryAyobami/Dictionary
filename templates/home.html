@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div>
+<form action='word'>
+    <p> 
+        <input type="text" name="search" placeholder="Input your word here">
+    </p>
+    <p>
+        <button type="submit" value="search" >Search</button>
+    </p>
+    <div class="box">
+        <label for="languages">Select a language:</label>
+        <select name="languages" id="languages">
+            <option value="af">Afrikaans</option>
+            <option value="sq">albanian</option>
+            <option value="am">amharic</option>
+            <option value="ar">arabic</option>
+            <option value="zh-cn">chinese</option>
+            <option value="da">danish</option>
+            <option value="nl">dutch</option>
+            <option value="en">english</option>
+            <option value="fr">french</option>
+        </select><button type="submit" value="translate" formaction="translation">translate</button>
+        </div>
+        
+</form>
+</div>
+{% endblock%}
