@@ -15,13 +15,13 @@ def word(request):
         dictionary =  PyDictionary()
         if search == '':
             message= {'message':"INPUT CANNOT BE EMPTY!!!"}
-            return render(request,'home.html',message)
+            return render(request,'notfound.html',message)
         else:
             meaning = dictionary.meaning(search)
             if meaning == None:
                 message= {'message': f"INPUT {search} NOT RECOGNIZED!!!"}
                 # get_close_matches(search,dictionary.args)
-                return render(request,'home.html',message)
+                return render(request,'notfound.html',message)
             
             else:
                 context = {
@@ -33,10 +33,16 @@ def word(request):
 def translation(request):
     search = request.GET.get('search')
     new_lang = request.GET.get('languages')
+    if search == '':
+            message= {'message':"INPUT CANNOT BE EMPTY!!!"}
+            return render(request,'notfound.html',message)
+
     translator = Translator()
     translation =  translator.translate(search, dest = new_lang)
+
     translations={
-        'translation':translation.text
+        'translation':translation.text ,
+        'pronunciation': translation.pronunciation
     }
     return render(request,'translate.html',translations)
 

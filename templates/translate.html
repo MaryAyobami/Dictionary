@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<a href="{% url'home' %}">HOME</a>
-<h3>Translation : {{translation}} </h3>
+<style>
+    h3{
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: medium;
+        color: rgb(48, 56, 35);
+        margin-top: 80px;
+
+    }
+</style>
+
+
+
+<h3>Translation : {{translation}}<br>
+    Pronunciation : {{pronunciation}}
+ </h3>
 
 {% endblock %}

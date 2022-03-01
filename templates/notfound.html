@@ -1,4 +1,9 @@
 {% extends 'base.html'%}
 
 {% block content%}
+<script>
+    alert('{{ message }}');
+</script>
+
+<a href="{% url 'home' %}">Go back home</a>
 {% endblock %}
