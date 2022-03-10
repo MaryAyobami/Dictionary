@@ -2,29 +2,9 @@
 
 {% block content%}
 <head>
-<!-- Select2 CSS --> 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
-
-<!-- jQuery --> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-
-<!-- Select2 JS --> 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
-<script>$(document).ready(function(){
- 
-  // Initialize select2
-  $("#selUser").select2();
-
-  // Read selected option
-  $('#but_read').click(function(){
-    var username = $('#selUser option:selected').text();
-    var userid = $('#selUser').val();
-
-    $('#result').html("id : " + userid + ", name : " + username);
-
-  });
-});
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 </head>
 <style>
     select {
@@ -38,9 +18,8 @@
         background-color: white;
         background-image: url('searchicon.png');
         background-position: 10px 10px;
-        background-repeat: no-repeat;
         padding: 10px;
-        width:200p+x;
+        width:400px;
         border:0;
         border-radius: 10px;
         box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
@@ -48,14 +27,15 @@
         margin-bottom: 15px;
       }
 
-      input[type=button],[type=submit]:focus{
-        width:50px;
+      input[type=button],[type=submit]{
+        width:150px;
         color: rgb(20, 2, 2);
-        padding: 40px;
         border-radius: 5px;
-        margin: 4px 2px;
         cursor: pointer;
         text-align: center;
+        padding: 3px;
+        margin-left: 10px;
+        margin-top: 20px;
 
       }
     .center{
@@ -77,7 +57,7 @@
     </div>
     <div class="box">
         <label for="languages">Select a language:</label>
-        <select name="languages" id="languages" class="operator">
+        <select name="languages" id="languages" class="select2">
             <option value="af">Afrikaans</option>
             <option value="sq">Albanian</option>
             <option value="am">Amharic</option>
@@ -189,4 +169,11 @@
         
 </form>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.select2').select2({
+      placeholder: 'Select a language'
+  });
+  });
+</script>
 {% endblock %}
