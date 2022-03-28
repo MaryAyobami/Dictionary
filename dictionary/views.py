@@ -3,7 +3,9 @@ from django.shortcuts import render
 
 from PyDictionary import PyDictionary
 from googletrans import Translator
-from difflib import get_close_matches
+from gtts import gTTS
+from playsound import playsound
+import os
 # Create your views here.
 
 def home(request):
@@ -13,20 +15,24 @@ def word(request):
     
         search = request.GET.get('search')
         dictionary =  PyDictionary()
+        
         if search == '':
             message= {'message':"INPUT CANNOT BE EMPTY!!!"}
             return render(request,'notfound.html',message)
         else:
             meaning = dictionary.meaning(search)
+            wordsound = gTTS(text=search,lang = "en" , slow = False)
+            wordsound.save("pronunciation.mp3")
             if meaning == None:
                 message= {'message': f"INPUT {search} NOT RECOGNIZED!!!"}
-                # get_close_matches(search,dictionary.args)
                 return render(request,'notfound.html',message)
             
             else:
                 context = {
                     'search':search,
-                    'meaning': meaning
+                    'meaning': meaning,
+                    'pronunciation' : os.system("pronunciation.mp3")
+                    
                 }
                 return render(request,'word.html', context)
             
@@ -36,13 +42,28 @@ def translation(request):
     if search == '':
             message= {'message':"INPUT CANNOT BE EMPTY!!!"}
             return render(request,'notfound.html',message)
-
-    translator = Translator()
-    translation =  translator.translate(search, dest = new_lang)
-
-    translations={
-        'translation':translation.text ,
-        'pronunciation': translation.pronunciation
-    }
-    return render(request,'translate.html',translations)
+    try:
+        translator = Translator()
+        translation =  translator.translate(search, dest = new_lang)
+        
+        wordsound = gTTS(text=translation.text , lang = new_lang , slow = False )
+        wordsound.save("sound.mp3")
+    except ValueError:
+        
+        translations={
+            'translation':translation.text ,
+            'word':search,
+            'language':new_lang,
+            'playsound': " "
+        }
+        return render(request,'translate.html',translations)
+    
+    else:
+        translations={
+            'translation':translation.text ,
+            'word':search,
+            'language':new_lang,
+            'playsound': os.system("sound.mp3")
+        }
+        return render(request,'translate.html',translations)
 

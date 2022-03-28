@@ -1,12 +1,9 @@
-from PyDictionary import PyDictionary
+# from gtts import gTTS
+# import os
+# from playsound import playsound
 
-#creating instance
-dictionary = PyDictionary()
-#meaning
-print(dictionary.meaning('code'))
-#synonym
-print(dictionary.synonym('code'))
-#antonym
-print(dictionary.antonym('code'))
-#translation to french
-print(dictionary.translate('code','fr'))
+# text = "hello"
+
+# psound = gTTS(text)
+# psound.save("sound.mp3")
+# os.system("sound.mp3")

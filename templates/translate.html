@@ -20,8 +20,21 @@
 
 
 <div class="wrap">
-<h3>Translation : {{translation}}<br>
-    Pronunciation : {{pronunciation}}
+<h3>
+    <p>
+    Word : {{word}}</p>
+
+
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+    
+    <p>
+    Translation ({{language}}) : {{translation}}</p>
+    <audio id="sound" src="templates/sound.mp3" preload="auto"></audio>
+  <button onclick="document.getElementById('sound').play();">Play</button>
+    
+
  </h3>
 </div>
+
+
 {% endblock %}
