@@ -45,14 +45,11 @@
         text-align: center;
       }
 </style>
-<div>       
-<form action='word'>
-    <div class="center">
+<div class="center">       
+<form action="{% url 'translation' %}">
+    <div >
     <p> 
         <input type="text" name="search" placeholder="Input your word here">
-    </p>
-    <p>
-        <button type="submit" value="search" >Search</button>
     </p>
     </div>
     <div class="box">
@@ -164,7 +161,7 @@
             <option value="yi">Yiddish</option>
             <option value="yo">Yoruba</option>
             <option value="zu">Zulu</option>
-        </select><button type="submit" value="translate" formaction="translation">translate</button>
+        </select><button type="submit" value="translate">translate</button>
         </div>
         
 </form>

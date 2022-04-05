@@ -11,30 +11,7 @@ import os
 def home(request):
     return render(request,'home.html')
 
-def word(request):
-    
-        search = request.GET.get('search')
-        dictionary =  PyDictionary()
-        
-        if search == '':
-            message= {'message':"INPUT CANNOT BE EMPTY!!!"}
-            return render(request,'notfound.html',message)
-        else:
-            meaning = dictionary.meaning(search)
-            wordsound = gTTS(text=search,lang = "en" , slow = False)
-            wordsound.save("pronunciation.mp3")
-            if meaning == None:
-                message= {'message': f"INPUT {search} NOT RECOGNIZED!!!"}
-                return render(request,'notfound.html',message)
-            
-            else:
-                context = {
-                    'search':search,
-                    'meaning': meaning,
-                    'pronunciation' : os.system("pronunciation.mp3")
-                    
-                }
-                return render(request,'word.html', context)
+
             
 def translation(request):
     search = request.GET.get('search')
@@ -67,3 +44,27 @@ def translation(request):
         }
         return render(request,'translate.html',translations)
 
+def word(request):
+    
+        search = request.GET.get('word')
+        dictionary =  PyDictionary()
+        
+        if search == '':
+            message= {'message':"INPUT CANNOT BE EMPTY!!!"}
+            return render(request,'notfound.html',message)
+        else:
+            meaning = dictionary.meaning(search)
+            wordsound = gTTS(text=search,lang = "en" , slow = False)
+            wordsound.save("pronunciation.mp3")
+            if meaning == None:
+                message= {'message': f"INPUT {search} NOT RECOGNIZED!!!"}
+                return render(request,'notfound.html',message)
+            
+            else:
+                context = {
+                    'search':search,
+                    'meaning': meaning,
+                    'pronunciation' : os.system("pronunciation.mp3")
+                    
+                }
+                return render(request,'word.html', context)

@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 
+
 {% block content%}
+
+<link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+      integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+      crossorigin="anonymous"
+    />
 <style>
     h3{
-        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family:Helevitica;
         font-size: medium;
         color: rgb(48, 56, 35);
         margin-top: 40px;
@@ -16,21 +24,47 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
+
+    .form-control-feedback {
+        padding: 50px;
+        width:400px;
+        border:0;
+        border-radius: 50px;
+        box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+        margin-top: 80px;
+        margin-bottom: 15px;
+    }
+    .main {
+        width: 50%;
+        margin: 50px auto;
+    }
 </style>
 
 
 <div class="wrap">
 <h3>
-    <p>
+    <form action="{% url 'word'%}">
+    <div class="main">
+    <div class="input-group">
+        <p><input type="text" class="form-control" name="word" placeholder="Search for words meaning...">
+            <button class="btn btn-secondary" type="submit" value="word">
+            <i class="fa fa-search"></i>
+            </button></p>
+        </div>
+    </div>
+            
+    </form>
     Word : {{word}}</p>
 
 
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
     
     <p>
-    Translation ({{language}}) : {{translation}}</p>
-    <audio id="sound" src="templates/sound.mp3" preload="auto"></audio>
-  <button onclick="document.getElementById('sound').play();">Play</button>
+    Translation ({{language}}) : {{translation}}
+    <audio controls preload><source src="{{playsound}}" type="audio/mpeg"></audio>
+    </p>
+
     
 
  </h3>

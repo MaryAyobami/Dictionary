@@ -15,7 +15,7 @@
     .wrap{
         width: 30%;
         position: absolute;
-        top: 80%;
+        top: 10%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
@@ -35,7 +35,9 @@ font-size:x-large;
     <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 <br>   
 <p>Pronunciation </p>
-{{pronunciation}}
+
+<audio controls autoplay><source src="{{pronounciation}}" type="audio/mp3">
+</audio>
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
  <p>Meaning</p>    
     {% for key,value in meaning.items %} 
