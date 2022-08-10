@@ -54,7 +54,7 @@ def word(request):
             return render(request,'notfound.html',message)
         else:
             meaning = dictionary.meaning(search)
-            wordsound = gTTS(text=search,lang = "en" , slow = False)
+            wordsound = gTTS(text=search,lang = "en" , slow = True)
             wordsound.save("pronunciation.mp3")
             if meaning == None:
                 message= {'message': f"INPUT {search} NOT RECOGNIZED!!!"}
